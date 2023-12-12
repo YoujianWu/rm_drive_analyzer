@@ -1,0 +1,4 @@
+analyzers:
+  rm_ecat:
+    type: RmEcatAnalyzer
+    match_name: rm_ecat

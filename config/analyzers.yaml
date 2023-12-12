@@ -1,0 +1,17 @@
+rm_drive_analyzer:
+  prefix: standard5  # optional
+  analyzers:
+    rm_ecat:
+      type: RmEcatAnalyzer
+      match_name: rm_ecat
+    motors:
+      type: RmEcatAnalyzer
+      match_name: rm_hw
+#  sensors:
+#    type: GenericAnalyzer
+#    path: Tilt Hokuyo
+#    find_and_remove_prefix: tilt_hokuyo_node
+#  motors:
+#    type: PR2MotorsAnalyzer
+#  joints:
+#    type: PR2JointsAnalyzer

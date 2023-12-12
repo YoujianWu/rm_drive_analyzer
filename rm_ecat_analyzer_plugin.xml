@@ -1,0 +1,8 @@
+<library path="lib/librm_ecat_analyzer">
+    <class name="RmEcatAnalyzer" type="rm_device_analyzer::RmEcatAnalyzer"
+           base_class_type="diagnostic_aggregator::Analyzer">
+        <description>
+            rm_ecat_analyzer is tools for reporting diagnostic information.
+        </description>
+    </class>
+</library>
