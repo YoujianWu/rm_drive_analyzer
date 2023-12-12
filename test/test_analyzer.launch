@@ -1,0 +1,7 @@
+<launch>
+    <!-- test whether a sub-analyzer written by us is ok or not  -->
+    <node pkg="diagnostic_aggregator" type="analyzer_loader"
+          name="loader" output="screen">
+        <rosparam command="load" file="$(find rm_ecat_analyzer)/test/analyzer.yaml"/>
+    </node>
+</launch>

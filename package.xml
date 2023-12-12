@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package format="2">
+    <name>rm_drive_analyzer</name>
+    <version>0.0.1</version>
+    <description>The rm_drive_analyzer package</description>
+    <maintainer email="1124895509@qq.com">Youjian Wu</maintainer>
+    <license>BSD</license>
+    <!--  buildtool_depend: dependencies of the build process  -->
+    <buildtool_depend>catkin</buildtool_depend>
+    <!--  depend: build, export, and execution dependency  -->
+    <depend>diagnostic_aggregator</depend>
+    <depend>diagnostic_msgs</depend>
+    <depend>pluginlib</depend>
+    <depend>roscpp</depend>
+    <depend>rosconsole</depend>
+    <depend>rm_ecat_slave</depend>
+    <depend>soem_interface</depend>
+    <depend>message_logger</depend>
+    <export>
+        <diagnostic_aggregator plugin="${prefix}/rm_ecat_analyzer_plugin.xml"/>
+    </export>
+
+</package>
