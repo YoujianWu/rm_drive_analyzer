@@ -1,8 +1,8 @@
 <launch>
     <!-- Use this to debug aggregator node in GDB -->
     <!-- launch-prefix="xterm -e gdb -args"  -->
-    <rosparam file="$(find rm_ecat_analyzer)/config/analyzers.yaml" command="load"/>
-    <rosparam file="$(find rm_ecat_analyzer)/config/publisher.yaml" command="load"/>
-    <node pkg="rm_ecat_analyzer" type="node" name="rm_drive_analyzer" output="screen">
+    <rosparam file="$(find rm_drive_analyzer)/config/analyzers.yaml" command="load"/>
+    <rosparam file="$(find rm_drive_analyzer)/config/publisher.yaml" command="load"/>
+    <node pkg="rm_drive_analyzer" type="node" name="rm_drive_analyzer" output="screen">
     </node>
 </launch>

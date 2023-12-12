@@ -27,10 +27,11 @@
 
 int main(int argc, char** argv) {
   ros::init(argc, argv, "rm_device_analyzer");
-  ros::NodeHandle nh("~");
+  ros::NodeHandle nhp("~");
+  ros::NodeHandle nh_pub("rm_drive_diagnostic_publisher");
 
-  auto* d = new rm_device_analyzer::RmEcatDiagnosticPublisher(nh);
-  rm_device_analyzer::RmEcatAggregator agg(nh);
+  auto* d = new rm_device_analyzer::RmEcatDiagnosticPublisher(nh_pub);
+  rm_device_analyzer::RmEcatAggregator agg(nhp);
   ros::Rate r(100);
   while (ros::ok()) {
     d->publishDiagnosticDatas();

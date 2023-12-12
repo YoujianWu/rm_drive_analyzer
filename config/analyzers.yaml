@@ -6,7 +6,7 @@ rm_drive_analyzer:
       match_name: rm_ecat
     motors:
       type: RmEcatAnalyzer
-      match_name: rm_hw
+      match_name: motors
 #  sensors:
 #    type: GenericAnalyzer
 #    path: Tilt Hokuyo

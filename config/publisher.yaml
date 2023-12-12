@@ -1,0 +1,19 @@
+rm_drive_diagnostic_publisher:
+  check_index:
+    - "motors"
+    - "rm_ecat"
+  check_group:
+    rm_ecat:
+      - check_item: "warnings"
+        regular_expression: ".*cycle time: (\\d+).*"
+        level: 1
+      - check_item: "counters"
+        regular_expression: ".*cycle time: (\\d+).*"
+        level: 1
+    motors:
+      - check_item: "positions"
+        regular_expression: ".*cycle time: (\\d+).*"
+        level: -1
+      - check_item: "warnings"
+        regular_expression: ".*cycle time: (\\d+).*"
+        level: -1
