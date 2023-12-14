@@ -24,11 +24,10 @@ class RmEcatDiagnosticPublisher {
   diagnostic_msgs::DiagnosticArray data_;
   ros::Subscriber diag_sub_;
   ros::Publisher diag_pub_;
-  int warning_number_{0};
 
   std::vector<std::string> check_index_{};
   std::unordered_multimap<std::string, std::pair<std::string, double>> check_group_{};
-  std::unordered_multimap<std::string, std::pair<int, std::regex>> regulations_{};
+  std::unordered_multimap<std::string, std::pair<std::string, std::regex>> regulations_{};
   std::vector<std::shared_ptr<rm_ecat::RmEcatSlave>> slaves_;
 
   void logCallBack(const rosgraph_msgs::Log::ConstPtr& log);

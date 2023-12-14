@@ -6,14 +6,12 @@ rm_drive_diagnostic_publisher:
     rm_ecat:
       - check_item: "warnings"
         regular_expression: ".*cycle time: (\\d+).*"
-        level: 1
       - check_item: "counters"
         regular_expression: ".*cycle time: (\\d+).*"
-        level: 1
     motors:
       - check_item: "positions"
+        regular_expression: ".*cycle time: (\\d+).*"  # todo: avoid null
+      - check_item: "velocity"
         regular_expression: ".*cycle time: (\\d+).*"
-        level: -1
       - check_item: "warnings"
         regular_expression: ".*cycle time: (\\d+).*"
-        level: -1

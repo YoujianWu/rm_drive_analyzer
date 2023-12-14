@@ -27,7 +27,7 @@ RmEcatDiagnosticPublisher::RmEcatDiagnosticPublisher(ros::NodeHandle& nh) {
       ROS_INFO_STREAM(rpc_value[i]["check_item"]);
       check_group_.emplace(index, std::make_pair(rpc_value[i]["check_item"], 0.));
       std::regex re((std::string)rpc_value[i]["regular_expression"]);
-      regulations_.emplace(rpc_value[i]["check_item"], std::make_pair(rpc_value[i]["level"], re));
+      regulations_.emplace(index, std::make_pair(rpc_value[i]["check_item"], re));
     }
   }
 }
@@ -61,19 +61,21 @@ void RmEcatDiagnosticPublisher::publishDiagnosticDatas() {
 }
 
 void RmEcatDiagnosticPublisher::logCallBack(const rosgraph_msgs::Log::ConstPtr& log) {
-  std::string except_messages_ = log->msg;
-  if (log->level == rosgraph_msgs::Log::WARN) {
-    ROS_INFO("Received a warning message: [%s]", log->msg.c_str());
-    // 使用正则表达式来匹配包含特定数字的行
-    for (const auto& re : regulations_) {
-      std::smatch match;
-      if (std::regex_search(except_messages_, match, re.second.second)) {
-        // 找到包含特定数字的行
-        std::string number_str = match.str(1);  // 第一个捕获组中的内容就是我们想要的数字
-        warning_number_++;                      // 将字符串转换为整数
+  std::string except_messages_ = log->msg;  // todo: check different level
+  for (const auto& re : regulations_) {
+    std::smatch match;
+    if (std::regex_search(except_messages_, match, re.second.second)) {
+      // 找到包含特定数字的行
+      std::string number_str = match.str(1);  // 第一个捕获组中的内容就是我们想要的数字
+
+      auto range = check_group_.equal_range(re.first);
+      for (auto it = range.first; it != range.second; ++it) {
+        if (it->second.first == re.second.first) {
+          it->second.second = stod(number_str) + 1;  // 将字符串转换为浮点数，并设置对应的值
+        }
       }
-      // 在这里执行你的警告消息处理逻辑
     }
+    // 在这里执行你的警告消息处理逻辑
   }
 }
 }  // namespace rm_device_analyzer
